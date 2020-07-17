@@ -1,1 +1,5 @@
-http://localhost:/3020
+//http://localhost:/3020
+
+GET http://localhost:3020/smoothies
+
+GET http://localhost:3020/id/
