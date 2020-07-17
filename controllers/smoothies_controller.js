@@ -1,6 +1,6 @@
-const {getAllSmoothies, getSmoothieById, postSmoothie, deleteSmoothie, updateSmoothie} = require("../utils/smoothies_utilities")
+const {getAllSmoothies, getSmoothieById, addSmoothie, deleteSmoothie, updateSmoothie} = require("../utils/smoothies_utilities");
 
-const getSmoothies = function (req, res){
+const getSmoothies = function(req, res){
     getAllSmoothies(req).exec((err, smoothies) => {
         if (err){
             res.status(500)
@@ -22,16 +22,16 @@ const getSmoothie = function(req, res){
     })
 }
 
-const addSmoothie = function(req, res) {
-    postSmoothie(req.body).save((err, smoothie) => {
+const postSmoothie = function(req, res) {
+    addSmoothie(req.body).save((err, smoothie) => {
         if (err){
             res.status(500)
             return res.json({
                 error: err.message
             })
         }
-        res.status(201)
-        res.send(smoothie)
+        res.status=201
+        res.send("You have succesfully posted your smoothie!")
     })
 }
 
@@ -43,7 +43,8 @@ const removeSmoothie = function (req, res){
                 error: err.message
             })
         }
-        res.sendStatus(204)
+        res.status=204
+        res.send("Your smoothie has been deleted")
     })
 }
 
@@ -55,11 +56,11 @@ const changeSmoothie = function(req, res){
                 error: err.message
             })
         }
-        res.status(200)
-        res.send(smoothie)
+        res.status=200
+        res.send("Your smoothie has been updated!")
     })
 }
 
 
 
-module.exports = {getSmoothies, getSmoothie, addSmoothie, removeSmoothie, changeSmoothie}
+module.exports = {getSmoothies, getSmoothie, postSmoothie, removeSmoothie, changeSmoothie}

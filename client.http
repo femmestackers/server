@@ -1,10 +1,44 @@
-
+###
 GET http://localhost:3020/smoothies HTTP/1.1
-content-type: application/json
-
-
-GET http://localhost:3020/smoothies
 
 ###
-GET http://localhost:3020/5f1146c2b7237b5240d9853a HTTP/1.1
->>>>>>> 22f3af367a4a452c5f3280090c4fc0a48b26775a
+GET http://localhost:3020/smoothies/5f11585271e43bedd39b9d6b HTTP/1.1
+
+
+###
+PUT http://localhost:3020/smoothies/5f11585271e43bedd39b9d6b HTTP/1.1
+content-type: application/json
+
+{
+    "_id": "5f11585271e43bedd39b9d6b",
+    "name": "Peach Smoothie",
+    "category": "Diabetic-friendly",
+    "ingredients": {
+        "Peach": "1 peeled and chopped",
+        "Skim milk ": "1 cup",
+        "Non-fat vanilla yogurt": "4-ounce",
+        "Ice cube": "1/2 cup",
+        "Ground cinnamon": "A pinch to taste"
+    },
+    "instructions": "Blend peach, milk, yogurt, and ice until smooth.",
+    "fyi": "This smoothie is a total refreshment and diabetic friendly one."
+}
+
+###
+DELETE http://localhost:3020/smoothies/5f11585271e43bedd39b9d70 HTTP/1.1
+
+###
+POST http://localhost:3020/smoothies/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Lychee Love",
+    "category": "nut free",
+    "ingredients": {
+        "Lychee": "1.5 cups deseeded",
+        "Full-fat Milk": "1 cup",
+        "Carrot": "1 chopped"
+    },
+    "instructions": "Blend smoothly till chunk-free.Enjoy!.",
+    "fyi": "You can also substitute almond/soy millk if you think full-fat milk is too rich "
+}

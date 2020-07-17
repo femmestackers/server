@@ -3,19 +3,18 @@ const Schema = mongoose.Schema
 
 
 const Smoothie = new Schema ({
-    smoothieName: {
+    name: {
       type: String,
       required: true,
       minlength: 5,
       maxlength: 50,
     },
-    
     category: {
       type: String,
       required: true,
     },
     ingredients: {
-      type: String,
+      type: Object,
       required: true,
     },
     instructions: {
