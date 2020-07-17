@@ -1,1 +1,2 @@
-http://localhost:/3020
+GET http://localhost:3020/smoothies HTTP/1.1
+content-type: application/json

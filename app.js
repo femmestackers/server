@@ -11,7 +11,7 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 const dbConn = process.env.MONGODB_URI || "mongodb://localhost/smoothies"  //only the animal shelter part changes according to app
-
+//connect string from atlas the mongodb_uri
 mongoose.connect(
     dbConn,
     {
