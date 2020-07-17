@@ -1,2 +1,10 @@
+
 GET http://localhost:3020/smoothies HTTP/1.1
 content-type: application/json
+
+
+GET http://localhost:3020/smoothies
+
+###
+GET http://localhost:3020/5f1146c2b7237b5240d9853a HTTP/1.1
+>>>>>>> 22f3af367a4a452c5f3280090c4fc0a48b26775a
