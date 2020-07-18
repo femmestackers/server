@@ -8,6 +8,10 @@ const port = process.env.PORT || 3020
 
 const app = express()
 
+// If we are not running in production, load our local .env
+if(process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+    } 
 app.use(cors())
 app.use(bodyParser.json())
 const dbConn = process.env.MONGODB_URI || "mongodb://localhost/smoothies"  //only the animal shelter part changes according to app
