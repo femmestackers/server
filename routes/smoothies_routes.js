@@ -1,17 +1,15 @@
 const express = require("express")
 const router = express.Router()
-const {getSmoothies, addSmoothie, getSmoothie, removeSmoothie, changeSmoothie} = require("../controllers/smoothies_controller")
-
+const {getSmoothies, getSmoothie, postSmoothie, changeSmoothie, removeSmoothie} = require("../controllers/smoothies_controller")
 //READ 
 //GET on "/smoothies"
 //returns all smoothies
 router.get("/", getSmoothies)
 
-
-router.post("/", addSmoothie)
-
-
 router.get("/:id", getSmoothie)
+
+
+router.post("/", postSmoothie)
 
 
 router.delete("/:id", removeSmoothie)
