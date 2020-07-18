@@ -40,5 +40,5 @@ Content-Type: application/json
         "Carrot": "1 chopped"
     },
     "instructions": "Blend smoothly till chunk-free.Enjoy!.",
-    "fyi": "You can also substitute almond/soy millk if you think full-fat milk is too rich "
+    "fyi": "You can also substitute almond/soy milk if you think full-fat milk is too rich "
 }

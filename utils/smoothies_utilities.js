@@ -8,8 +8,8 @@ const Smoothie = require("../models/smoothie")
     return Smoothie.findById(id)
   }
 
-  const addSmoothie = function(req) {
-    return new Smoothie(req.body)
+  const addSmoothie = function(smoothie) {
+    return new Smoothie(smoothie)
   }
   
   const deleteSmoothie = function(id) {
