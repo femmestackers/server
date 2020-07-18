@@ -3,16 +3,16 @@ let dataFile = "../data/smoothies.json"
 let appSmoothies = require(dataFile)
 const fs = require("fs")
 
-const getAllSmoothies = function(req){
+  const getAllSmoothies = function(req){
     return Smoothie.find()
-}
-  
-  const postSmoothie = function(req) {
-    return new Smoothie(req.body)
   }
   
-  const getSmoothieById = function(req) {
-    return Smoothie.findById(req.params.id)
+  const getSmoothieById = function(id) {
+    return Smoothie.findById(id)
+  }
+
+  const addSmoothie = function(req) {
+    return new Smoothie(req.body)
   }
   
   const deleteSmoothie = function(id) {
@@ -26,4 +26,4 @@ const getAllSmoothies = function(req){
   }
   
 
-module.exports = {getAllSmoothies, postSmoothie, getSmoothieById, deleteSmoothie, updateSmoothie}
+module.exports = {getAllSmoothies, addSmoothie, getSmoothieById, deleteSmoothie, updateSmoothie}
