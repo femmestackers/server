@@ -1,4 +1,7 @@
 const Smoothie = require("../models/smoothie")
+let dataFile = "../data/smoothies.json"
+let appSmoothies = require(dataFile)
+const fs = require("fs")
 
 const getAllSmoothies = function(req){
     return Smoothie.find()

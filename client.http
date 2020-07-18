@@ -1,5 +1,12 @@
+
 //http://localhost:/3020
 
 GET http://localhost:3020/smoothies
 
 GET http://localhost:3020/id/
+
+GET http://localhost:3020/smoothies
+
+
+GET http://localhost:3020/5f1146c2b7237b5240d9853a HTTP/1.1
+
