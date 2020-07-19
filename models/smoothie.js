@@ -26,6 +26,9 @@ const Smoothie = new Schema ({
     fyi: {
       type: String,
     },
+    comments: [{
+      username: String,
+      comment: String}],
     
 
 })

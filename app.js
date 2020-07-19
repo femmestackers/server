@@ -2,7 +2,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const session = require('express-session');
 const smoothieRouter = require("./routes/smoothies_routes");
+const passport = require("./config/passport");
+const authRouter = require("./routes/auth_routes")
+app.use("/auth", authRouter)
 
 const port = process.env.PORT || 3020
 
@@ -35,7 +39,10 @@ app.use("/smoothies", smoothieRouter)
 app.listen(port, ()=> console.log("Smoothiverse is running on port " + port))
 
 
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.get("/",(req, res) => {
     res.send("Welcome to our Smoothiverse app!!")
 });
+

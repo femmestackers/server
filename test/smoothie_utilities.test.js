@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const expect = require('expect');
 const utilities = require('../utils/smoothies_utilities');
 const Smoothie = require('../models/smoothie');
+const Comment = require('../models/comments')
 const {
     connectToDb,
     disconnectFromDb
@@ -141,6 +142,25 @@ describe('updateSmoothie', (done) => {
     });
 });
 
+// addComment
+describe('addComment', (done) => {
+    it('should add a comment to a post', (done) => {
+        const req = {
+            params: {
+                postId: postId
+            },
+            body: {
+				username: 'tester2',
+                comment: 'This is a comment on the post'
+            }
+        };
+        utilities.addComment(req).then((post) => {
+            expect(post.comments.length).toBe(1);
+            expect(post.comments[0].username).toBe('tester2');
+            done();
+        })
+    });
+});
 
 
 // Setup and tear down functions
@@ -151,6 +171,7 @@ function setupData() {
     testSmoothie.ingredients = {berries:"1 cup"};
     testSmoothie.instructions = "Blend well and enjoy";
     testSmoothie.fyi = '';
+    testComment.comment = '';
     return Smoothie.create(testSmoothie);
 }
 

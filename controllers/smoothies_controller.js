@@ -1,4 +1,4 @@
-const {getAllSmoothies, getSmoothieById, addSmoothie, deleteSmoothie, updateSmoothie} = require("../utils/smoothies_utilities");
+const {getAllSmoothies, getSmoothieById, addSmoothie, deleteSmoothie, updateSmoothie, makeComment} = require("../utils/smoothies_utilities");
 
 const getSmoothies = function(req, res){
     getAllSmoothies(req).exec((err, smoothies) => {
@@ -35,6 +35,28 @@ const postSmoothie = function(req, res) {
     })
 }
 
+// make a comment on a post
+const makeComment = function (req, res) {
+    // Check for error from middleware
+    if (req.error) {
+        res.status(req.error.status);
+        res.send(req.error.message);
+    } else {
+        // resolve the promise from addComment
+        // Add username to the request from the session
+        req.body.username = req.user.username;
+        addComment(req).then((post) => {
+            res.status(200);
+            res.send(post);
+        }).catch((err) => {
+            res.status(500);
+            res.json({
+                error: err.message
+            });
+        });
+    }
+}
+
 const removeSmoothie = function (req, res){
     deleteSmoothie(req.params.id).exec((err)=> {
         if (err){
@@ -63,4 +85,4 @@ const changeSmoothie = function(req, res){
 
 
 
-module.exports = {getSmoothies, getSmoothie, postSmoothie, removeSmoothie, changeSmoothie}
+module.exports = {getSmoothies, getSmoothie, postSmoothie, removeSmoothie, changeSmoothie, makeComment}
