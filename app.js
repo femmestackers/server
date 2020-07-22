@@ -5,9 +5,10 @@ const mongoose = require("mongoose");
 const smoothieRouter = require("./routes/smoothies_routes");
 const session = require('express-session');
 const MongoStore = require("connect-mongo")(session);
-const passport = require('passport');
-const passportLocalMongoose = require('passport-local-mongoose');
+const passport = require("passport");
+const passportLocalMongoose = require("passport-local-mongoose");
 const authRouter = require('./routes/auth_routes');
+const userRouter = require('./routes/users_routes')
 
 const port = process.env.PORT || 3020
 
@@ -35,15 +36,14 @@ require('./config/passport');
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/', (req, res) => {
-    console.log('get on /');
+app.get("/",(req, res) => {
     console.log('req.session', req.session)
     console.log('req.user', req.user)
-    res.send('got your request');
+    res.send("Welcome to our Smoothiverse app!!")
+    
 })
-
-app.use('/auth', authRouter);
-const dbConn = process.env.MONGODB_URI || "mongodb://localhost/smoothies"  //only the animal shelter part changes according to app
+const dbConn = "mongodb://localhost/smoothies"  //to check locally 
+//const dbConn = process.env.MONGODB_URI || "mongodb://localhost/smoothies"  //only the animal shelter part changes according to app
 //connect string from atlas the mongodb_uri
 mongoose.connect(
     dbConn,
@@ -60,11 +60,11 @@ mongoose.connect(
         }
     }
 )
-app.use("/smoothies", smoothieRouter)
+app.use("/smoothies", smoothieRouter) //   /smoothies gets put in front of all routes
+app.use('/auth', authRouter);
+app.use('/users', userRouter);
+
 app.listen(port, ()=> console.log("Smoothiverse is running on port " + port))
 
 
 
-app.get("/",(req, res) => {
-    res.send("Welcome to our Smoothiverse app!!")
-});
