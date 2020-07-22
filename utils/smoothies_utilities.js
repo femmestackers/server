@@ -1,5 +1,5 @@
 const Smoothie = require("../models/smoothie")
-const Comment = require("../models/comment")
+
 
   const getAllSmoothies = function(req){
     return Smoothie.find()
@@ -26,6 +26,7 @@ const Comment = require("../models/comment")
 
    // Add a comment to a post
 // returns a promise (because it is async)
+    /* 
     const addComment = async function (req) {
     let post = await Post.findById(req.params.postId);
 
@@ -39,6 +40,5 @@ const Comment = require("../models/comment")
   });
 } 
   }
-  
-
-module.exports = {getAllSmoothies, addSmoothie, getSmoothieById, deleteSmoothie, updateSmoothie, addComment}
+*/
+module.exports = {getAllSmoothies, addSmoothie, getSmoothieById, deleteSmoothie, updateSmoothie}

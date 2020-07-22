@@ -4,17 +4,13 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const session = require('express-session');
 const smoothieRouter = require("./routes/smoothies_routes");
-<<<<<<< HEAD
 const passport = require("./config/passport");
 const authRouter = require("./routes/auth_routes")
 app.use("/auth", authRouter)
-=======
-const session = require('express-session');
-const MongoStore = require("connect-mongo")(session);
-const passport = require('passport');
-const passportLocalMongoose = require('passport-local-mongoose');
-const authRouter = require('./routes/auth_routes');
->>>>>>> 7c3d084b747b2c4459dc34d32afb0efe2e227553
+
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 const port = process.env.PORT || 3020
 
@@ -38,9 +34,7 @@ app.use(session({
     })
 }));
 
-require('./config/passport');
-app.use(passport.initialize());
-app.use(passport.session());
+
 
 app.get('/', (req, res) => {
     console.log('get on /');
@@ -50,7 +44,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/auth', authRouter);
-const dbConn = process.env.MONGODB_URI || "mongodb://localhost/smoothies"  //only the animal shelter part changes according to app
+const dbConn = process.env.MONGODB_URI || "mongodb://localhost/smoothies"  
 //connect string from atlas the mongodb_uri
 mongoose.connect(
     dbConn,
@@ -71,8 +65,7 @@ app.use("/smoothies", smoothieRouter)
 app.listen(port, ()=> console.log("Smoothiverse is running on port " + port))
 
 
-app.use(passport.initialize())
-app.use(passport.session())
+
 
 app.get("/",(req, res) => {
     res.send("Welcome to our Smoothiverse app!!")

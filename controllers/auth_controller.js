@@ -18,9 +18,7 @@ const register = function (req, res) {
             // Log in the newly registered user
             passport.authenticate('local')(req, res, function () {
 				// See what we have
-                console.log('authenticated', req.user.username)
-                console.log('session object:', req.session)
-                console.log('req.user:', req.user)
+                
 				// send back the user
                 res.json(req.user)
             })
@@ -28,4 +26,15 @@ const register = function (req, res) {
     })
 }
 
-module.exports = { register }
+const logout = function(req, res) {
+	req.logout()
+	res.sendStatus(200)
+}
+
+
+module.exports = { 
+    register,
+    login: login User,
+    logout 
+
+}

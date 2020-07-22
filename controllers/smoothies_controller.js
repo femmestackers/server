@@ -1,4 +1,12 @@
-const {getAllSmoothies, getSmoothieById, addSmoothie, deleteSmoothie, updateSmoothie, makeComment} = require("../utils/smoothies_utilities");
+const {getAllSmoothies, getSmoothieById, addSmoothie, deleteSmoothie, updateSmoothie, addComment} = require("../utils/smoothies_utilities");
+
+const userAuthenticated = function (req, res, next) {
+    if (req.isAuthenticated()) {
+        next()
+    } else {
+        res.sendStatus(403)
+    }
+}
 
 const getSmoothies = function(req, res){
     getAllSmoothies(req).exec((err, smoothies) => {

@@ -7,6 +7,10 @@ const {
         userAuthenticated
     } = require('../utils/common_utilities');
 
+// For post, delete, put -require authenticated user
+router.use(userAuthenticated)
+
+
     //READ 
 //GET on "/smoothies"
 //returns all smoothies

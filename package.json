@@ -29,12 +29,8 @@
     "nodemon": "^2.0.4",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-<<<<<<< HEAD
     "passport-local-mongoose": "^6.0.1",
     "session": "^0.1.0"
-=======
-    "passport-local-mongoose": "^6.0.1"
->>>>>>> 7c3d084b747b2c4459dc34d32afb0efe2e227553
   },
   "engines": {
     "node": "10.x"
