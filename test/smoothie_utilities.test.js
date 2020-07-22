@@ -35,6 +35,22 @@ afterEach((done) => {
     tearDownData().exec(() => done());
 });
 
+// Setup and tear down functions
+function setupData() {
+    let testSmoothie = {};
+    testSmoothie.name = 'Lychee love';
+    testSmoothie.category = 'detox';
+    testSmoothie.ingredients = {berries:"1 cup"};
+    testSmoothie.instructions = "Blend well and enjoy";
+    testSmoothie.fyi = '';
+    return Smoothie.create(testSmoothie);
+}
+
+
+function tearDownData() {
+    return Smoothie.deleteMany();
+}
+
 describe('getAllsmoothies with one smoothie', (done) => {
     it('should get a smoothie if one exists', function (done) {
         let req = {
@@ -76,7 +92,7 @@ describe('addSmoothie', (done) => {
                 category: 'detox',
                 ingredients: {berries:"1 cup"},
                 instructions:'Blend well and enjoy',
-                fyi: 11
+                fyi: ''
             }
         }
         utilities.addSmoothie(req.body).save((err, smoothie) => {
@@ -90,7 +106,7 @@ describe('addSmoothie', (done) => {
         const req = {
             body: {
                 name: 'Lychee love',
-                category:'10',
+                category:'overall health',
                 ingredients: '' 
             }
         }
@@ -127,11 +143,11 @@ describe('updateSmoothie', (done) => {
                 id: smoothieId
             },
             body: {
-                name: 'egg',
+                name: 'Something else',
                 category: 'detox',
                 ingredients: {berries:"2 cups"},
                 instructions: "Mix very well",
-                fyi: '' 
+                fyi: ''
             }
         };
         utilities.updateSmoothie(req).exec((err, smoothie) => {
@@ -140,20 +156,3 @@ describe('updateSmoothie', (done) => {
         });
     });
 });
-
-
-
-// Setup and tear down functions
-function setupData() {
-    let testSmoothie = {};
-    testSmoothie.name = 'Lychee love';
-    testSmoothie.category = 'detox';
-    testSmoothie.ingredients = {berries:"1 cup"};
-    testSmoothie.instructions = "Blend well and enjoy";
-    testSmoothie.fyi = '';
-    return Smoothie.create(testSmoothie);
-}
-
-function tearDownData() {
-    return Smoothie.deleteMany();
-}
