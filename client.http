@@ -3,8 +3,13 @@
 //http://localhost:/3020
 
 GET http://localhost:3020/smoothies
+###
+GET http://localhost:3020/smoothies/5f11583f4b2e22b8bd422754
+
+###
 
 
+GET http://localhost:3020/5f1146c2b7237b5240d9853a HTTP/1.1
 
 
 ###
@@ -15,7 +20,7 @@ GET http://localhost:3020/smoothies/5f11585271e43bedd39b9d6b HTTP/1.1
 
 
 ###
-PUT http://localhost:3020/smoothies/5f11585271e43bedd39b9d6b HTTP/1.1
+PUT http://localhost:3020/smoothies/5f178d117567763b65223f3b HTTP/1.1
 content-type: application/json
 
 {
@@ -34,14 +39,14 @@ content-type: application/json
 }
 
 ###
-DELETE http://localhost:3020/smoothies/5f11585271e43bedd39b9d70 HTTP/1.1
+DELETE http://localhost:3020/smoothies/5f1787ba635367d9230a7495 HTTP/1.1
 
 ###
 POST http://localhost:3020/smoothies/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Lychee Love",
+    "name": "BlackBerry slush",
     "category": "nut free",
     "ingredients": {
         "Lychee": "1.5 cups deseeded",
@@ -51,4 +56,40 @@ Content-Type: application/json
     "instructions": "Blend smoothly till chunk-free.Enjoy!.",
     "fyi": "You can also substitute almond/soy millk if you think full-fat milk is too rich "
 }
+###
 
+POST http://localhost:3020/smoothies/comments/5f1787ba635367d9230a7497 HTTP/1.1
+Content-Type: application/json
+
+{ 
+   "comment": "The ginger was too tangy for me!But still liked it."
+}
+
+
+###
+
+
+
+
+
+
+
+
+POST http://localhost:3020/auth/register HTTP/1.1
+Content-Type: application/json
+
+{ "username":"Tom","email":"tom@test.com", "password": "passwordtom"}
+
+###
+POST http://localhost:3020/auth/login HTTP/1.1
+Content-Type: application/json
+
+{ "username":"Tom","email":"tom@test.com", "password": "passwordtom"}
+
+
+###
+GET http://localhost:3020/auth/logout HTTP/1.1
+
+
+###
+DELETE http://localhost:3020/smoothies/comments/5f1809153284f73db0143db7 HTTP/1.1

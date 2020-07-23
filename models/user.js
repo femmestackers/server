@@ -22,4 +22,4 @@ User.methods.newUser = function() {
     return `${this.name} ${this.email}`;
 }
 
-module.exports = mongoose.model("User", User)
+module.exports = mongoose.model('User', User);

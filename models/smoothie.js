@@ -3,6 +3,10 @@ const Schema = mongoose.Schema
 
 
 const Smoothie = new Schema ({
+    username: {
+    type: String
+    },
+
     name: {
       type: String,
       required: true,
@@ -24,11 +28,12 @@ const Smoothie = new Schema ({
       maxlength: 250,
     },
     fyi: {
-      type: String,
+      type: String
     },
     comments: [{
       username: String,
-      comment: String}],
+      comment: String
+  }]
     
 
 })

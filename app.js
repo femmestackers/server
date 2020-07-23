@@ -3,14 +3,12 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const session = require('express-session');
-const smoothieRouter = require("./routes/smoothies_routes");
-const passport = require("./config/passport");
-const authRouter = require("./routes/auth_routes")
-app.use("/auth", authRouter)
-
-
-app.use(passport.initialize());
-app.use(passport.session());
+const MongoStore = require("connect-mongo")(session);
+const passport = require("passport");
+const passportLocalMongoose = require("passport-local-mongoose");
+const smoothieRouter = require('./routes/smoothies_routes');
+const authRouter = require('./routes/auth_routes');
+const userRouter = require('./routes/users_routes')
 
 const port = process.env.PORT || 3020
 
@@ -35,16 +33,18 @@ app.use(session({
 }));
 
 
+require('./config/passport');
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.get('/', (req, res) => {
-    console.log('get on /');
+app.get("/",(req, res) => {
     console.log('req.session', req.session)
     console.log('req.user', req.user)
-    res.send('got your request');
+    res.send("Welcome to our Smoothiverse app!!")
+    
 })
-
-app.use('/auth', authRouter);
-const dbConn = process.env.MONGODB_URI || "mongodb://localhost/smoothies"  
+const dbConn = "mongodb://localhost/smoothies"  //to check locally 
+//const dbConn = process.env.MONGODB_URI || "mongodb://localhost/smoothies"  
 //connect string from atlas the mongodb_uri
 mongoose.connect(
     dbConn,
@@ -56,18 +56,14 @@ mongoose.connect(
     err => {
         if (err){
             console.log("Error connecting to database", err)
-        }else {
+        } else {
             console.log("Connected to database! " , dbConn)
         }
     }
 )
-app.use("/smoothies", smoothieRouter)
+app.use('/smoothies', smoothieRouter)
+
+app.use('/auth', authRouter);
+app.use('/users', userRouter);
+
 app.listen(port, ()=> console.log("Smoothiverse is running on port " + port))
-
-
-
-
-app.get("/",(req, res) => {
-    res.send("Welcome to our Smoothiverse app!!")
-});
-
