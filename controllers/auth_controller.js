@@ -17,8 +17,8 @@ const register = function (req, res) {
         }
     });
 };
-
-const logout = function (req, res) {
+   
+ const logout = function (req, res) {
     req.logout();
     console.log('logged out user');
     console.log('session object:', req.session);
@@ -30,8 +30,8 @@ const logout = function (req, res) {
 const authenticate = passport.authenticate('local');
 
 function loginUser(req, res) {
-    // passport.authenticate returns a function that we will call with req, res, and a callback function to execute on success    
-
+    // passport.authenticate returns a function that we will call with req, res, and a callback function to execute on success
+    
     authenticate(req, res, function () {
         console.log('authenticated', req.user.username);
         console.log('session object:', req.session);
@@ -46,3 +46,4 @@ module.exports = {
     login: loginUser,
     logout
 };
+

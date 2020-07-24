@@ -1,5 +1,6 @@
 const Smoothie = require("../models/smoothie")
 
+
   const getAllSmoothies = function(req){
     return Smoothie.find()
   }
@@ -12,6 +13,8 @@ const Smoothie = require("../models/smoothie")
   const addSmoothie = function(smoothie) {
     return new Smoothie(smoothie)
   }
+
+  
   
   const deleteSmoothie = function(id) {
     return Smoothie.findByIdAndRemove(id)

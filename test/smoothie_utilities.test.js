@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const expect = require('expect');
 const utilities = require('../utils/smoothies_utilities');
 const Smoothie = require('../models/smoothie');
+const Comment = require('../models/comments')
 const {
     connectToDb,
     disconnectFromDb

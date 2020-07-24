@@ -95,10 +95,9 @@ const verifyOwner = function(req, res, next) {
 			}
 			next()
 		})
-	}
-
-
-const Smoothie = require("../models/smoothie")
+    }
+    
+    const Smoothie = require("../models/smoothie")
 
 const getComments = function(req, res) {
 	// Check for error from middleware
@@ -122,28 +121,28 @@ const getComments = function(req, res) {
 }
 
 
-const makeComment = function(req, res) {
-	// Check for error from middleware
-	if (req.error) {
-		res.status(req.error.status)
-		res.send(req.error.message)
-	} else {
-		// resolve the promise from addComment
-		// Add username to the request from the session
-		req.body.username = req.user.username
-		addComment(req)
-			.then(smoothie => {
-				res.status(200)
-				res.send(smoothie)
-			})
-			.catch(err => {
-				res.status(500)
-				res.json({
-					error: err.message
-				})
-			})
-	}
+// make a comment on a post
+const makeComment = function (req, res) {
+    // Check for error from middleware
+    if (req.error) {
+        res.status(req.error.status);
+        res.send(req.error.message);
+    } else {
+        // resolve the promise from addComment
+        // Add username to the request from the session
+        req.body.username = req.user.username;
+        addComment(req).then((post) => {
+            res.status(200);
+            res.send(post);
+        }).catch((err) => {
+            res.status(500);
+            res.json({
+                error: err.message
+            });
+        });
+    }
 }
+
 // delete a comment on a post
 const removeComment = function(req, res) {
 	// Check for error from middleware
