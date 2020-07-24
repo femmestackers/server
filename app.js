@@ -17,7 +17,12 @@ const app = express()
 if(process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
     } 
-app.use(cors())
+app.use(cors({
+        credentials: true,
+        origin: (origin, cb) => {
+        cb(null, true)
+        }
+        }))
 app.use(bodyParser.json())
 app.use(session({
     // resave and saveUninitialized set to false for deprecation warnings
