@@ -41,9 +41,20 @@ function loginUser(req, res) {
     });
 }
 
+
+function authenticatedUser(req, res) {
+    if (req.isAuthenticated()) {
+        res.status(200)
+        res.send(req.user.username)
+    } else {
+        res.sendStatus(403)
+    }
+}
+
 module.exports = {
     register,
     login: loginUser,
-    logout
+    logout,
+    authenticatedUser
 };
 

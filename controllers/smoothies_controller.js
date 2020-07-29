@@ -28,13 +28,14 @@ const postSmoothie = function(req, res) {
 	console.log(req.body)
     addSmoothie(req.body).save((err, smoothie) => {
         if (err){
+			console.log("Got error on add smoothie", err.message)
             res.status(500)
             return res.json({
                 error: err.message
             })
         }
         res.status=201
-        res.send("You have succesfully posted your smoothie!")
+        res.send(smoothie)
     })
 }
 
