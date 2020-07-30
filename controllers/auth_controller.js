@@ -41,7 +41,6 @@ function loginUser(req, res) {
     });
 }
 
-
 function authenticatedUser(req, res) {
     if (req.isAuthenticated()) {
         res.status(200)
