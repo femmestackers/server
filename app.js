@@ -48,8 +48,8 @@ app.get("/",(req, res) => {
     res.send("Welcome to our Smoothiverse app!!")
     
 })
-//const dbConn = "mongodb://localhost/smoothies"  //to check locally 
-const dbConn = process.env.MONGODB_URI || "mongodb://localhost/smoothies"  
+const dbConn = "mongodb://localhost/smoothies"  //to check locally 
+//const dbConn = process.env.MONGODB_URI || "mongodb://localhost/smoothies"  
 //connect string from atlas the mongodb_uri
 mongoose.connect(
     dbConn,
